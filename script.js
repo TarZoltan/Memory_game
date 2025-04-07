@@ -28,6 +28,22 @@ cards.forEach((emoji) => {
 });
 
 function checkMatch() {
-    
+    const [card1, card2] = flippedCards;
+  if (card1.dataset.emoji === card2.dataset.emoji) {
+    card1.classList.add('matched');
+    card2.classList.add('matched');
+    flippedCards = [];
+  } else {
+    lockBoard = true;
+    setTimeout(() => {
+      card1.classList.remove('flipped');
+      card2.classList.remove('flipped');
+      card1.innerText = '';
+      card2.innerText = '';
+      flippedCards = [];
+      lockBoard = false;
+    }, 1000);
+
+}
 }
 
