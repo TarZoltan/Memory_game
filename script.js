@@ -7,8 +7,27 @@ let flippedCards = [];
 let lockBoard = false;
 
 cards.forEach((emoji) => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.dataset.emoji = emoji;
-    card.innerText = '';
-    });
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.dataset.emoji = emoji;
+  card.innerText = ''; // kezdő állapot: rejtve
+
+  card.addEventListener('click', () => {
+    if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+    card.classList.add('flipped');
+    card.innerText = card.dataset.emoji;
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+      checkMatch();
+    }
+  });
+
+  board.appendChild(card);
+});
+
+function checkMatch() {
+    
+}
+
