@@ -5,3 +5,9 @@ cards = cards.sort(() => 0.5 - Math.random()); // () => Nyíl függvény (rövid
 const board = document.querySelector('.game-board');
 let flippedCards = [];
 let lockBoard = false;
+
+cards.forEach((emoji) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.emoji = emoji;
+    card.innerText = ''; // kezdő állapot: rejtve
