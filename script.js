@@ -6,26 +6,9 @@ const board = document.querySelector('.game-board');
 let flippedCards = [];
 let lockBoard = false;
 
-cards.forEach((emoji) => {
-  const card = document.createElement('div');
-  card.classList.add('card');
-  card.dataset.emoji = emoji;
-  card.innerText = ''; // kezdő állapot: rejtve
+const restartButton = document.querySelector('.restart-button');
 
-  card.addEventListener('click', () => {
-    if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
-
-    card.classList.add('flipped');
-    card.innerText = card.dataset.emoji;
-    flippedCards.push(card);
-
-    if (flippedCards.length === 2) {
-      checkMatch();
-    }
-  });
-
-  board.appendChild(card);
-});
+restartGame();
 
 function checkMatch() {
     const [card1, card2] = flippedCards;
@@ -47,3 +30,43 @@ function checkMatch() {
 }
 }
 
+restartButton.addEventListener('click', restartGame);
+
+function restartGame() {
+    flippedCards = [];
+    lockBoard = false;
+ 
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.classList.remove('flipped', 'matched'); 
+      card.innerText = '';
+    });
+  
+    const shuffledCards = shuffle([...emojis, ...emojis]);
+  
+    board.innerHTML = '';
+    shuffledCards.forEach((emoji) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.dataset.emoji = emoji;
+      card.innerText = '';
+  
+      card.addEventListener('click', () => {
+        if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  
+        card.classList.add('flipped');
+        card.innerText = card.dataset.emoji;
+        flippedCards.push(card);
+  
+        if (flippedCards.length === 2) {
+          checkMatch();
+        }
+      });
+  
+      board.appendChild(card);
+    });
+  }
+
+  function shuffle(array) {
+    return array.sort(() => 0.5 - Math.random());
+  }
