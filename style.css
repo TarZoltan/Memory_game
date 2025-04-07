@@ -58,3 +58,21 @@ h1 {
   }
 }
 
+
+.restart-button {
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 40px; 
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+    z-index: 10;
+    transition: background-color 0.3s ease;
+  }
+  
+  .restart-button:hover {
+    background-color: #5a5a5a;
+  }
