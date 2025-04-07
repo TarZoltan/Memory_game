@@ -61,7 +61,7 @@ h1 {
 
 .restart-button {
     padding: 10px;
-    color: white;
+    background: #f4f4f4;
     border: none;
     border-radius: 8px;
     cursor: pointer;
