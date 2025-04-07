@@ -10,4 +10,5 @@ cards.forEach((emoji) => {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.emoji = emoji;
-    card.innerText = ''; // kezdő állapot: rejtve
+    card.innerText = '';
+    });
